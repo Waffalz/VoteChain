@@ -1,0 +1,21 @@
+class Citizen
+	id
+	name
+
+Client:
+	HTML/JS
+
+Server:
+	List<Citizen> citizens
+	List<Citizen> candidates
+
+Use case:
+1. Voter logs onto client with personal info
+2. Client sends info to server to verify
+3. Server cross-references info with citizen database
+4. If successful, server sends that citizen's info along with a list of candidates
+5. Client generates list based on candidate roster
+6. User votes, client sends vote to server
+7. Server records that the citizen has voted for a candidate
+8. Server bundles votes into blocks
+9. Do that blockchain stuff
