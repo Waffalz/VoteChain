@@ -97,9 +97,12 @@
 
             function submitLogin(){
                 var idField = document.getElementById("id_field");
-                var passField = document.getElementById("password")
+                var passField = document.getElementById("password_field")
                 var idLogin = parseInt(idField.value);
                 if (!isNaN(idLogin)){
+
+                    sendLoginRequest(idLogin, passField.value);
+
                     var loginPage = document.getElementById("login_page");
                     var votePage = document.getElementById("vote_page");
                     loginPage.hidden = true;
@@ -107,6 +110,12 @@
                 } else {
                     idField.value
                 }
+            }
+
+            function sendLoginRequest(id, pass){
+                var req = new XMLHttpRequest();
+                req.open("POST", "login.php", true);
+                req.send(JSON.stringify([id, pass]));
             }
         </script>
 
