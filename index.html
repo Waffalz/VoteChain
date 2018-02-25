@@ -4,18 +4,18 @@
     </title>
     <h1>VoteChain</h1> 
     <body>
-        <div id="login_page">
+        <form method="post" name="login_page" id="login_page" action="/login.php".>
             Login<br>
             ID:<br>
-            <input type="text" name="id_field" id="id_field"><br>
+            <input type="text" name="id_field" id="id_field" required><br>
             Password:<br>
-            <input type="text" name="password_field" id="password_field"><br>
-            <button type="button" name="login_button" onclick="submitLogin()">Login</button>
+            <input type="text" name="password_field" id="password_field" required><br>
+            <button type="subtmit" name="login_button" onclick="submitLogin()">Login</button>
 
             <script>
                 
             </script>
-        </div>
+        </form>
 
         <div id="vote_page">
             Vote here
@@ -111,12 +111,13 @@
                     idField.value
                 }
             }
-
+            /*
             function sendLoginRequest(id, pass){
                 var req = new XMLHttpRequest();
                 req.open("POST", "login.php", true);
                 req.send(JSON.stringify([id, pass]));
             }
+            */
         </script>
 
     <form action="connection_test.php">
