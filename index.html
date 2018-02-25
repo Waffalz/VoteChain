@@ -4,19 +4,31 @@
     </title>
     <body>
         Use this to vote
-        
+        <div id="candidate_area"></div>
         <script>
-            function getVotingRoster(){
-                return ["Naman", "Alex", "Ethan"];
+            class Citizen{
+                constructor(name, id, password){
+                    this.name = name;
+                    this.id = id;
+                    this.password = password;
+                }
+                
+            }
+            function getCandidates(){
+                return [new Citizen("Alex", 1, "kawoo"), new Citizen("Naman", 2, "phrie"), new Citizen("Ethan", 3, "waffalz")];
             }
             function initializeVoteChoices(choices){
                 for (i = 0; i < choices.length; i++){
-
+                    document.getElementbyId("candidate_area").appendChild(createRadioButton(choices[i]));
                 }
             }
             function createRadioButton(item){
-                var radio = '<input type="radio" name='
+                var radioFormat = '<input type="radio" id="' + item.name + '" name="' + "candlist" + '" value="' + item.id + '">';
+                var radio = document.createElement(radioFormat);
+                var label = '<label for="' + radio.id + '">';
+                radio.appendChild(label);
             }
+            initializeVoteChoices(getCandidates());
         </script>
     </body>
 </html>
