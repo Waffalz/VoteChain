@@ -3,9 +3,11 @@
         Voting Client
     </title>
     <body>
+        
         Use this to vote
         <div id="candidate_area"></div>
-        <button type="button" id="submit">Submit Vote</button>
+        <button type="button" onClick="submitButton()" id="submit">Submit Vote</button>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
         <script>
             class Citizen{
                 constructor(name, id, password){
@@ -15,20 +17,45 @@
                 }
                 
             }
-            function getCandidates(){
+            /*
+            Gets a list of Citizens
+            */
+            function getCandidateList(){
                 return [new Citizen("Alex", 1, "kawoo"), new Citizen("Naman", 2, "phrie"), new Citizen("Ethan", 3, "waffalz")];
             }
+            /*
+            Creates a map of Citizens mapped by their ids
+            */
+            function generateCandidateMap(list){                
+                var candMap = new Map();
+                for (i = 0; i < list.length; i++){
+                    var thing = list[i];
+                    candMap.set(thing.id, thing);
+                    console.log(thing.id);
+                }
+                console.log(candMap);
+                return candMap;
+            }
+            /*
+            Makes the radio button list
+            */
             function initializeVoteChoices(choices){
-                for (i = 0; i < choices.length; i++){
-                    var cand = choices[i];
-                    var area = document.getElementById('candidate_area');
-                    area.appendChild(createRadioButton(choices[i]));
-                    var label = document.createElement("LABEL");
-                    label.innerHTML = '<label for="'+cand.id+'">'+cand.name+'</label>';
-                    area.appendChild(label);
-                    area.appendChild(document.createElement("BR"));
+                console.log(choices);
+                
+                for (let cand of choices){
+                    //var cand = choices[i];
+                    console.log(cand);
+                    var area = document.getElementById('candidate_area'); //get the area for radio buttons
+                    area.appendChild(createRadioButton(cand)); //create a radio button for a candidate and add it to the area
+                    var label = document.createElement("LABEL"); //create a label
+                    label.innerHTML = '<label for="'+cand.id+'">'+cand.name+'</label>'; //set its HTML stuff
+                    area.appendChild(label); //add it to the area
+                    area.appendChild(document.createElement("BR")); //add a line break
                 }
             }
+            /*
+            * Creates a radio button based on a candidate
+            */
             function createRadioButton(item){
                 //var radioFormat = '<input type="radio" id="' + item.name + '" name="' + "candlist" + '" value="' + item.id + '">';
                 var radio = document.createElement("INPUT");
@@ -40,7 +67,16 @@
                 //radio.innerHTML = item.name;
                 return radio;
             }
-            initializeVoteChoices(getCandidates());
+
+            var mapList = generateCandidateMap(getCandidateList());
+            initializeVoteChoices(mapList.values()); //create the radio button based on the candidate list retrieved
+
+            function submitButton (){
+                var selected = $("input[name=\"candList\"]:checked").val();
+                console.log(selected);
+                console.log(mapList);
+                console.log(mapList.get(selected));
+            }
         </script>
     </body>
 </html>
