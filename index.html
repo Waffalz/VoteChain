@@ -5,6 +5,7 @@
     <body>
         Use this to vote
         <div id="candidate_area"></div>
+        <button type="button" id="submit">Submit Vote</button>
         <script>
             class Citizen{
                 constructor(name, id, password){
@@ -19,7 +20,13 @@
             }
             function initializeVoteChoices(choices){
                 for (i = 0; i < choices.length; i++){
-                    document.getElementById("candidate_area").appendChild(createRadioButton(choices[i]));
+                    var cand = choices[i];
+                    var area = document.getElementById('candidate_area');
+                    area.appendChild(createRadioButton(choices[i]));
+                    var label = document.createElement("LABEL");
+                    label.innerHTML = '<label for="'+cand.id+'">'+cand.name+'</label>';
+                    area.appendChild(label);
+                    area.appendChild(document.createElement("BR"));
                 }
             }
             function createRadioButton(item){
@@ -27,11 +34,10 @@
                 var radio = document.createElement("INPUT");
                 radio.type = "radio";
                 radio.id = item.id;
-                radio.name = "candlist";
+                radio.name = "candList";
                 radio.value = item.id;
-                //var label = '<label for="' + radio.id + '">';
-                var label = document.createTextNode(item.name);
-                radio.appendChild(label);
+                
+                //radio.innerHTML = item.name;
                 return radio;
             }
             initializeVoteChoices(getCandidates());
