@@ -21,7 +21,7 @@
             Gets a list of Citizens
             */
             function getCandidateList(){
-                return [new Citizen("Alex", 1, "kawoo"), new Citizen("Naman", 2, "phrie"), new Citizen("Ethan", 3, "waffalz")];
+                return [new Citizen("Alex", 1337, "kawoo"), new Citizen("Naman", 420, "phrie"), new Citizen("Ethan", 300, "waffalz")];
             }
             /*
             Creates a map of Citizens mapped by their ids
@@ -74,7 +74,7 @@
             function submitButton (){
                 var selected = $("input[name=\"candList\"]:checked").val();
                 console.log(selected);
-                console.log(mapList);
+                console.log(mapList.keys());
                 console.log(mapList.get(selected));
             }
         </script>
