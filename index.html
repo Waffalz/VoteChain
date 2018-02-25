@@ -7,10 +7,10 @@
         <div id="login_page">
             Login<br>
             ID:<br>
-            <input type="text" name="idField"><br>
+            <input type="text" name="id_field" id="id_field"><br>
             Password:<br>
-            <input type="text" name="passwordField"><br>
-            <button type="button" name="loginButton">Login</button>
+            <input type="text" name="password_field" id="password_field"><br>
+            <button type="button" name="login_button" onclick="submitLogin()">Login</button>
 
             <script>
                 
@@ -94,6 +94,20 @@
 
         <script>
             document.getElementById("vote_page").hidden = true;
+
+            function submitLogin(){
+                var idField = document.getElementById("id_field");
+                var passField = document.getElementById("password")
+                var idLogin = parseInt(idField.value);
+                if (!isNaN(idLogin)){
+                    var loginPage = document.getElementById("login_page");
+                    var votePage = document.getElementById("vote_page");
+                    loginPage.hidden = true;
+                    votePage.hidden = false;
+                } else {
+                    idField.value
+                }
+            }
         </script>
     </body>
 </html> 
