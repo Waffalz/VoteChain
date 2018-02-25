@@ -19,14 +19,20 @@
             }
             function initializeVoteChoices(choices){
                 for (i = 0; i < choices.length; i++){
-                    document.getElementbyId("candidate_area").appendChild(createRadioButton(choices[i]));
+                    document.getElementById("candidate_area").appendChild(createRadioButton(choices[i]));
                 }
             }
             function createRadioButton(item){
-                var radioFormat = '<input type="radio" id="' + item.name + '" name="' + "candlist" + '" value="' + item.id + '">';
-                var radio = document.createElement(radioFormat);
-                var label = '<label for="' + radio.id + '">';
+                //var radioFormat = '<input type="radio" id="' + item.name + '" name="' + "candlist" + '" value="' + item.id + '">';
+                var radio = document.createElement("INPUT");
+                radio.type = "radio";
+                radio.id = item.id;
+                radio.name = "candlist";
+                radio.value = item.id;
+                //var label = '<label for="' + radio.id + '">';
+                var label = document.createTextNode(item.name);
                 radio.appendChild(label);
+                return radio;
             }
             initializeVoteChoices(getCandidates());
         </script>
